@@ -1,0 +1,30 @@
+{% extends "club_accounts/club_base.html" %}
+
+{% block pregroup %}
+<div class="container">
+  <h1>{{club_user.name}}</h1>
+  <h2>{{club_user.description}}</h2>
+  <h2> Coordi Rollnumber: {{club_user.coordinatorid}}</h2>
+  <h2> Faculty Advisor Name: {{club_user.fa_name}}</h2>
+
+  <h2> Member Count: {{club_user.members.count}}</h2>
+
+  <div class="content">
+  	{% if user in club_user.members.all %}
+  		<a href="{% url 'club_user:leave' slug=club_user.slug %}" class="btn btn-lg btn-warning"><span class="fa fa-times-circle-o"></span> Leave Club</a>
+  	{% else %}
+  		<a href="{% url 'club_user:join' slug=club_user.slug %}" class="btn btn-lg btn-warning"><span class="fa fa-check-circle-o"></span> Join Club</a>
+  	{% endif %}
+
+  </div>
+</div>
+{% endblock %}
+
+{% block group_content %}
+
+<h3> All club events will appear here!</h3>
+
+{#<div class="col-md-8">	{% if club_user.events.count == 0 %}	<h2>No events in this group yet!</h2> #}
+{#	{% else %}		{% for events in group.events.all %} {% include "events/_events.html" %}{% endfor %}{% endif %}</div> #}
+
+{% endblock %}
