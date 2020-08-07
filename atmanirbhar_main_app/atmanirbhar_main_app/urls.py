@@ -19,12 +19,18 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
+    #generic view homepage
     path('', views.HomePage.as_view(), name="home"),
     path('admin/', admin.site.urls),
+    #generic view testpage -- login redirect
     path('test/', views.TestPage.as_view(), name="test"),
+    #generic view thankspage -- logout redirect
     path('thanks/', views.ThanksPage.as_view(), name="thanks"),
+    #include user_accounts self made urls wih user_accounts/
     path('user_accounts/', include("user_accounts.urls", namespace="user_accounts")),
+    #include user_accounts django builtin urls corresponding to django model wih user_accounts/
     path('user_accounts/', include("django.contrib.auth.urls")),
+    #include user_accounts self made urls wih user_accounts/
     path('club_accounts/', include("club_accounts.urls", namespace="club_accounts")),
 
     

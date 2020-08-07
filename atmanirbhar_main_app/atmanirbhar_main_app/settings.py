@@ -127,7 +127,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-LOGIN_REDIRECT_URL = 'test'
-LOGOUT_REDIRECT_URL = 'thanks'
+LOGIN_REDIRECT_URL = 'test' #redirects to main_app templates/test.html on login
+LOGOUT_REDIRECT_URL = 'thanks' #redirects to main_app templates/thanks.html on logout
 
 INTERNAL_IPS = ['127.0.0.1']
+#setup django debug toolbar for assistance
