@@ -35,16 +35,16 @@
                     <a href="{% url 'home' %}">Home Page</a>
                 </div>
                 {% if user.is_authenticated %} {#student belongs to user table#}
-                    {# <a href="{% url 'posts:create' %}" class="btn btn-simple">Post</a> #}
-                    {# <div class='brand'> <a href="{% url 'events:all' %}" class="btn btn-simple">My Feed</a> </div>#}
-                    {# <a href="{% url 'events:create' %}" class="btn btn-simple">Create Events as {{ user.username }}</a> #}
+
+                    <div class='brand'> <a href="{% url 'events:all' %}" class="btn btn-simple">My Feed</a> </div>
+                    <a href="{% url 'events:create' %}" class="btn btn-simple">Create Events as {{ user.username }}</a>
                     
                     <!-- show logout button with template tag from users table for his name-->
                     <div> <a href="{% url 'user_accounts:logout' %}" class="btn btn-simple">Log out as {{user.username}}</a> </div> 
                 
                 
                 {% else %}
-                    {# <div class='brand'> <a href="{% url 'events:all' %}" class="btn btn-simple">All Events</a> </div>#}
+                    <div class='brand'> <a href="{% url 'events:all' %}" class="btn btn-simple">All Events</a> </div>
 
                     <!-- show login for old user and signup for new user button -->
                     <div> <a href="{% url 'user_accounts:login' %}" class="btn btn-simple">Log in</a> </div>

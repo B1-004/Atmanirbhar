@@ -32,6 +32,7 @@ urlpatterns = [
     path('user_accounts/', include("django.contrib.auth.urls")),
     #include user_accounts self made urls wih user_accounts/
     path('club_accounts/', include("club_accounts.urls", namespace="club_accounts")),
+    path('events/', include("events.urls", namespace="events")),
 
     
 ]

@@ -5,6 +5,16 @@
 {% block content %}
 
     <h1>Welcome to Atmanirbhar Webapp for Students!</h1>
-    <h2>Your feed will show here!</h2>
+
+
+    {% if user.is_authenticated %} {#student belongs to user table#}
+
+        <h2>To view feed,click on My feed!</h2>
+        
+        <h2>To create event, click on Create Event as {{ user.username }}!</h2>
+    
+    {% else %}
+        <h2>Click All events to view events without login!</h2>
+    {% endif %}
 
 {% endblock %}

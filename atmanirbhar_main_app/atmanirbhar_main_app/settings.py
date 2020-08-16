@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'user_accounts',
     'club_accounts',
+    'events',
     
 ]
 
@@ -113,6 +114,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
+
+DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S' 
 
 USE_I18N = True
 
