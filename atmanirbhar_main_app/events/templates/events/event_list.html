@@ -1,0 +1,42 @@
+<!-- all events list view-->
+{% extends "events/event_base.html" %}
+
+{% block pregroup %}
+<div class="col-md-4">
+	<div class="content">
+		{% if user.is_authenticated %}
+		<h2>
+			Hi {{user.username}}!
+		</h2>
+
+        {% endif %}
+
+		<p>Welcome to the Event List Page! <br>View Events with a shared interest!</p>
+	</div>
+</div>
+{% endblock %}
+
+{% block group_content %}
+
+<!--code for club list -->
+<div class="col-md-8">
+	<div class="list-group">
+		{% for event in object_list %}
+		<a href="{% url 'events:single' pk=event.pk %}"
+		class="list-group-item list-group-item-action flex-column align-items-start">
+			<h3 class="mb-1">{{ event.event_name }}</h3>
+			<p class="mb-1">
+                {{ event.description_html|safe }} <br>
+                Created at: {{ event.created_at }} <br>
+                Start time: {{ event.start_time }} and End time: {{ event.end_time }}
+            </p>
+
+			<span></span><span></span>
+
+			</div>
+		</a>
+
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

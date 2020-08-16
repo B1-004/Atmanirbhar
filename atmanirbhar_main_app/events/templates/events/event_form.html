@@ -1,0 +1,16 @@
+{% extends "events/event_base.html" %}
+{% load bootstrap4 %}
+
+{% block group_content %}
+<div class="container">
+  <h1>Create A New Event</h1>
+  <h2>DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S' </h2>
+  <form method="POST" action="{% url 'events:create' %}" id="groupForm">
+  	{% csrf_token %}
+  	{% bootstrap_form form %}
+    {% buttons %}
+  		<button type="submit" class="btn btn-primary btn-large">Create</button>
+  	{% endbuttons %}
+  </form>
+</div>
+{% endblock %}

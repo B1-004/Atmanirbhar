@@ -1,0 +1,47 @@
+<!-- all club list view-->
+{% extends "club_accounts/club_base.html" %}
+
+{% block pregroup %}
+<div class="col-md-4">
+	<div class="content">
+		{% if user.is_authenticated %}
+		<h2>
+			Welcome back {{user.username}}
+			{# <a href="{% url 'posts:for_user' username=user.username %}">@{{user.username }}</a> #}
+		</h2>
+
+        {% endif %}
+
+		<h2>CLUB PAGE</h2>
+
+		<p>Welcome to the Clubs Page! <br>Select a Clubs with a shared interest!</p>
+	</div>
+	<!-- neither created club create view nor it's related urls but incase do it in future use below to give authenticated users option to create a club -->
+	{# {% if user.is_authenticated %}<a href="{% url 'club_accounts:create' %}" class="btn btn-warning" role="button"><span class="fa fa-plus"></span> Create New Club!</a>{% endif %}#}
+</div>
+{% endblock %}
+
+{% block group_content %}
+
+<!--code for club list -->
+<div class="col-md-8">
+	<div class="list-group">
+		{% for club_user in object_list %}
+		<a href="{% url 'club_accounts:single' slug=club_user.slug %}"
+		class="list-group-item list-group-item-action flex-column align-items-start">
+			<h3 class="mb-1">{{ club_user.name }}</h3>
+			<p class="mb-1">{{ club_user.description_html|safe }}</p>
+			<div class="d-flex w-40 justify-content-between">
+				<small class="text-muted"><span class="badge badge-secondary">
+					{{ club_user.members.count }}</span> member{{ club_user.members.count|pluralize }}</small>
+				
+				<!-- below for showing all events count for a club-->
+				{# <small class="text-muted"><span class="badge badge-secondary">				{{ club_user.events.count }}</span> post{{ club_user.events.count|pluralize }}</small> #}
+			<span></span><span></span>
+			</div>
+		</a>
+
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

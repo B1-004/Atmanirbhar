@@ -1,0 +1,16 @@
+<!-- single event detail view-->
+{% extends "events/event_base.html" %}
+
+{% block pregroup %}
+<div class="container">
+  <h1>{{event.event_name}}</h1>
+  <h2>{{event.description}}</h2>
+  <h2> Event Coordinator: {{event.event_coordinator}}</h2>
+  <h2> Event Start time: {{event.start_time}}</h2>
+  <h2> Event End time: {{event.end_time}}</h2>
+  <h2> Event creation time: {{event.created_at}}</h2>
+
+  <div class="content">	
+  </div>
+</div>
+{% endblock %}

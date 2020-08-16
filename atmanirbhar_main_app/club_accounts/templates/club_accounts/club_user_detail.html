@@ -1,0 +1,51 @@
+<!-- single club detail view-->
+{% extends "club_accounts/club_base.html" %}
+
+{% block pregroup %}
+<div class="container">
+  <h1>{{club_user.name}}</h1>
+  <h2>{{club_user.description}}</h2>
+  <h2> Coordi Rollnumber: {{club_user.coordinatorid}}</h2>
+  <h2> Faculty Advisor Name: {{club_user.fa_name}}</h2>
+
+  <h2> Member Count: {{club_user.members.count}}</h2>
+
+  <div class="content">
+  	{% if user in club_user.members.all %}
+  		<a href="{% url 'club_accounts:leave' slug=club_user.slug %}" class="btn btn-lg btn-warning"><span class="fa fa-times-circle-o"></span> Leave Club</a>
+  	{% else %}
+  	  {% if user.is_authenticated %}
+  		  <a href="{% url 'club_accounts:join' slug=club_user.slug %}" class="btn btn-lg btn-warning"><span class="fa fa-check-circle-o"></span> Join Club</a>
+
+      {% else %}
+        
+        <a href="{% url 'user_accounts:login' %}" class="btn btn-lg btn-warning"><span class="fa fa-check-circle-o"></span> Login first to join Club :P!</a>
+      {% endif %}
+    
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
+
+{% block group_content %}
+
+  {% if user.is_authenticated %} {#student belongs to user table#}
+    {% if user == club_user.coordinatorid %}
+        <h1>Welcome Aboard, Dear Coordinator!</h1><br>
+        <h2> Hope {{ user.username }}, you are fine! </h2><br>
+
+        <h2>To create event, click below on Create Event as {{ club_user.name }}!</h2>
+        <a href="{% url 'events:create' %}" class="btn btn-simple"><span class="fa fa-check-circle-o"></span>Create Events as {{ club_user.name }}</a>
+        
+    {% else %}
+        <h2> Welcome, {{ user.username }}, hope you are fine! </h2><br>
+        <h2>Check out our club!</h2>
+    {% endif %}
+  {% endif %}
+  {#<h3> All club events will appear here!</h3>#}
+
+  {#<div class="col-md-8">	{% if club_user.events.count == 0 %}	<h2>No events in this group yet!</h2> #}
+  {#	{% else %}		{% for events in group.events.all %} {% include "events/_events.html" %}{% endfor %}{% endif %}</div> #}
+
+{% endblock %}

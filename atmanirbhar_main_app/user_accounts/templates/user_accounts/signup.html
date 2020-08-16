@@ -1,0 +1,25 @@
+<!-- create login form-->
+{% extends "base.html" %}
+
+{# at the terminal, run pip install django-bootstrap4 #}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+  <h1>Sign Up Here</h1>
+  <form method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+    {% endbuttons %}
+  </form>
+</div>
+
+<div> 
+  <h2> Already a registered user: 
+  <a href="{% url 'user_accounts:login' %}" class="btn btn-simple"><h1> Login here </h1></a> 
+</div>
+</h2>
+
+{% endblock %}
